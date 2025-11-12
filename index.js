@@ -8,21 +8,43 @@ class Student {
   getStatus() {
     return this.score >= 75 ? "Lulus" : "Tidak Lulus";
   }
+  getPredikat() {
+    if (this.score >= 90) return "Sangat Baik";
+    if (this.score >= 80) return "Baik";
+    if (this.score >= 70) return "Cukup";
+    return "Kurang";
+  }
 }
 
 class StudentTable {
-  constructor(tableSelector, filterSelector, studentsData, leaderboardSelector) {
+  constructor(tableSelector, filterSelector, leaderboardSelector) {
     this.table = document.querySelector(tableSelector);
     this.filterInput = document.querySelector(filterSelector);
     this.leaderboardContainer = document.querySelector(leaderboardSelector);
-    this.students = studentsData.map(
+    this.tbody = this.table.querySelector("tbody");
+
+    // Load existing students from localStorage or start empty
+    const savedData = JSON.parse(localStorage.getItem("students")) || [];
+    this.students = savedData.map(
       s => new Student(s.id, s.name, s.score)
     );
-    this.tbody = this.table.querySelector("tbody");
 
     this.renderTable();
     this.renderLeaderboard();
     this.attachFilterHandler();
+  }
+
+  saveToLocalStorage() {
+    localStorage.setItem("students", JSON.stringify(this.students));
+  }
+
+  addStudent(name, score) {
+    const id = this.students.length ? this.students[this.students.length - 1].id + 1 : 1;
+    const newStudent = new Student(id, name, Number(score));
+    this.students.push(newStudent);
+    this.saveToLocalStorage();
+    this.renderTable();
+    this.renderLeaderboard();
   }
 
   renderTable(filteredStudents = this.students) {
@@ -35,6 +57,7 @@ class StudentTable {
         <td>${student.name}</td>
         <td class="nilai">${student.score}</td>
         <td class="kelulusan">${student.getStatus()}</td>
+        <td class="predikat">${student.getPredikat()}</td>
       `;
       this.tbody.appendChild(tr);
     });
@@ -75,13 +98,28 @@ class StudentTable {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  const studentsData = [
-    { id: 1, name: "Reisya Mutiara Ramadani", score: 87 },
-    { id: 2, name: "Raissa Adhi Pratama", score: 85 },
-    { id: 3, name: "Farhan Alfarizi", score: 78 },
-    { id: 4, name: "Hanif Syahril", score: 76 },
-    { id: 5, name: "Pramudya Wira", score: 100 },
-  ];
+  const studentTable = new StudentTable(".table", "#filter", "#leaderboard");
 
-  new StudentTable(".table", "#filter", studentsData, "#leaderboard");
+  const nameInput = document.querySelector('input[placeholder="Nama"]');
+  const scoreInput = document.querySelector('input[placeholder="Nilai"]');
+  const addButton = document.getElementById("button-addon2");
+
+  addButton.addEventListener("click", () => {
+    const name = nameInput.value.trim();
+    const score = scoreInput.value.trim();
+
+    if (!name || !score) {
+      alert("Nama dan Nilai harus diisi!");
+      return;
+    }
+
+    if (isNaN(score) || score < 0 || score > 100) {
+      alert("Nilai harus berupa angka antara 0 - 100!");
+      return;
+    }
+
+    studentTable.addStudent(name, score);
+    nameInput.value = "";
+    scoreInput.value = "";
+  });
 });

@@ -1,90 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kelompok6.com</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kelompok6.com</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
-<body>
-    
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="index.html">Kelompok 6</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="infokelompok.html">Info Kelompok</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Anggota
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="Wira.html">Wira</a></li>
-            <li><a class="dropdown-item" href="farhan.html">Farhan</a></li>
-            <li><a class="dropdown-item" href="manca.html">Rere</a></li>
-            <li><a class="dropdown-item" href="manca.html">Hanif</a></li>
-            <li><a class="dropdown-item" href="Manca.html">Manca</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="manca.html">Bonus Note.</a>
-        </li>
-      </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Cari Siswa..." aria-label="Search"/>
-        <button class="btn btn-outline-success" type="submit">Cari</button>
-      </form>
-    </div>
-  </div>
-</nav>
+<body class="bg-light">
 
-    <div class="container">
+  <div class="container py-5">
     <div class="row justify-content-center">
-
-        <div class="input-group">
-            <span class="input-group-text">Nama Dan Nilai</span>
-            <input type="text" aria-label="First name" class="form-control" placeholder="Nama">
-            <input type="text" aria-label="Last name" class="form-control" placeholder="Nilai">
-            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Masukkan Siswa</button>
+      <div class="col-md-10 col-lg-8">
+        <!-- Input Form -->
+        <div class="card shadow-sm border-0 mb-4">
+          <div class="card-body">
+            <div class="input-group">
+              <span class="input-group-text bg-primary text-white fw-semibold">Nama & Nilai</span>
+              <input type="text" aria-label="Nama" class="form-control" placeholder="Nama">
+              <input type="text" aria-label="Nilai" class="form-control" placeholder="Nilai">
+              <button class="btn btn-primary fw-semibold" type="button" id="button-addon2">Masukkan</button>
+            </div>
+          </div>
         </div>
-        
-        <div class="col-md-8">
-            <h4 class="mb--3 text">List siswa</h4>
-            <input type="text" id="filter" class="form-control form-control-lg shadow-none" placeholder="cari siswa ...">
+
+        <div class="card shadow-sm border-0 mb-4">
+          <div class="card-body">
+            <h4 class="text-center mb-3 text-primary">List Siswa</h4>
+            <input type="text" id="filter" class="form-control form-control-lg mb-3" placeholder="Cari siswa ...">
 
             <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Nomer</th>
-                            <th>Nama</th>
-                            <th>Nilai</th>
-                            <th>lulus/tidak</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+              <table class="table table-hover align-middle mb-0 text-center">
+                <thead class="table-primary">
+                  <tr>
+                    <th style="width: 8%;">No</th>
+                    <th style="width: 30%;">Nama</th>
+                    <th style="width: 15%;">Nilai</th>
+                    <th style="width: 20%;">Status</th>
+                    <th style="width: 27%;">Predikat</th>
+                  </tr>
+                </thead>
+                <tbody>
 
-                    </tbody>
-                </table>
+                </tbody>
+              </table>
             </div>
-            <div id="leaderboard" class="mt-4">
-                
-            </div>
+          </div>
         </div>
-    </div>
-    </div>
 
-    
+        <div class="card shadow-sm border-0">
+          <div class="card-body">
+            <div id="leaderboard" class="text-center text-muted">
+              
+            </div>
+          </div>
+        </div>
 
-    <script src="index.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+      </div>
+    </div>
+  </div>
+
+  <script src="index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>
