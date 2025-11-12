@@ -76,12 +76,11 @@ class StudentTable {
 
 document.addEventListener("DOMContentLoaded", () => {
   const studentsData = [
-    { id: 1, name: "Reisya Mutiara Ramadani", score: 100 },
-    { id: 2, name: "Raissa Adhi Pratama", score: 60 },
-    { id: 3, name: "Farhan Alfarizi", score: 87 },
-    { id: 4, name: "Hanif Syahril", score: 88 },
-    { id: 5, name: "Pramudya Wira", score: 90 },
-    { id: 6, name: "aselole", score: 90 },
+    { id: 1, name: "Reisya Mutiara Ramadani", score: 87 },
+    { id: 2, name: "Raissa Adhi Pratama", score: 85 },
+    { id: 3, name: "Farhan Alfarizi", score: 78 },
+    { id: 4, name: "Hanif Syahril", score: 76 },
+    { id: 5, name: "Pramudya Wira", score: 100 },
   ];
 
   new StudentTable(".table", "#filter", studentsData, "#leaderboard");
