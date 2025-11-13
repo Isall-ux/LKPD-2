@@ -23,7 +23,6 @@ class StudentTable {
     this.leaderboardContainer = document.querySelector(leaderboardSelector);
     this.tbody = this.table.querySelector("tbody");
 
-    // Load existing students from localStorage or start empty
     const savedData = JSON.parse(localStorage.getItem("students")) || [];
     this.students = savedData.map(
       s => new Student(s.id, s.name, s.score)
